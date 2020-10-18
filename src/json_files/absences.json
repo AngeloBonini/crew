@@ -1,4 +1,6 @@
-export const absences = [
+{
+  "message": "Success",
+  "payload": [
     {
       "admitterId": null,
       "admitterNote": "",
@@ -587,4 +589,5 @@ export const absences = [
       "type": "vacation",
       "userId": 2735
     }
-  ];
+  ]
+  }
