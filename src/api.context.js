@@ -1,9 +1,9 @@
 import React from 'react';
-import absences from '../json_files/absences';
-import members from '../json_files/members';
+import absences from './json_files/absences';
+import members from './json_files/members';
 import moment from "moment";
 
-
+export const ApiContext = React.createContext(null);
 
 export const MEMBERS_HASH = () => { 
   const hash = {};
@@ -19,7 +19,7 @@ if(absenceType === "vacation"){
 }else{
   return `${userName} is sick`;
 }
-}
+};
 //---------------------------------------------------
 const USER_ID = (ABSENCES, userId) => { 
   return ABSENCES.filter(absence => parseInt(absence.userId) === parseInt(userId));
@@ -61,6 +61,7 @@ export const getAllAbsences = filters => {
 
   return allMatchedEvents;
 };
+
 export const DataProvider = props => {
   const {
       children
@@ -70,12 +71,12 @@ export const DataProvider = props => {
 
 
   return (
-      <DataContext.Provider
+      <ApiContext.Provider
           value={{
               getAllEventData
           }}
       >
           {children}
-      </DataContext.Provider>
+      </ApiContext.Provider>
   );
 };
