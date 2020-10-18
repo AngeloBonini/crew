@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { MDBTable } from 'mdbreact';
 import PropTypes from "prop-types";
 
 const TableList = ({events}) => {
@@ -44,20 +44,23 @@ columns: [
 rows: events
 
 };
+return(
+    <MDBTable
+    striped
+    bordered
+    small
+    data={data_people}
+    /> 
+   
+    );
+    };
+
 TableList.propTypes = {
     events: PropTypes.array
 };
 
 TableList.defualtProps = {
     events: []
-};
-
-return(
-<MDBTable autoWidth striped>
-  <MDBTableHead columns={data_people.columns} />
-  <MDBTableBody rows={data_people.rows} />
-</MDBTable>
-);
 };
 
 export default TableList;
