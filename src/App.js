@@ -1,23 +1,23 @@
-import React, { Suspense } from "react";
-import {DataProvider} from "./api.context";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import "./App.css";
+import React, { Component } from 'react';
 
-const MainRoute = React.lazy(() => import("./Main"));
+import { createBrowserHistory } from 'history';
+import { Route, Switch, Router, Redirect } from 'react-router-dom';
+import Home from './Home/Home';
 
+let history =  createBrowserHistory();
 
-function App() {
-  return (
-    <BrowserRouter>
-    <Suspense fallback={<div>Loading...</div>}>
-        <DataProvider>
-            <Switch>
-                <Route exact path={'/'} component={MainRoute}/>
-            </Switch>
-        </DataProvider>
-    </Suspense>
-</BrowserRouter>
-  );
+export default class App extends Component {
+  
+  render() {
+    return (
+      <Router history={history}>
+        <Switch>
+        <Route exact path={`/:userId`} component={Home} />
+        <Route exact path={`/:startDate/:endDate`} component={Home} />
+        <Route exact path='' component={Home} />
+        <Redirect from='*' to='' />
+      </Switch>
+      </Router>
+    );
+  }
 }
-
-export default App;
